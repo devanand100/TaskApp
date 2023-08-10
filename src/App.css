@@ -1,3 +1,6 @@
 .App{
     max-width: 500px;
 }
+.task-view{
+    height: 60vh;
+}

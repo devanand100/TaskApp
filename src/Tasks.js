@@ -64,7 +64,7 @@ export default function HomePage() {
           </Modal>
         )}
         {editTask.length > 0 && (
-          <Modal title="Edit Task" onClose={() => setSave(false)}>
+          <Modal title="Edit Task" onClose={() => setEditTask([])}>
             <SaveForm
               task={editTask}
               onClose={() => setEditTask([])}

@@ -4,13 +4,20 @@ import { useTaskReducers } from "../Tasks";
 // components
 import Button from "../elements/button";
 
-export const SaveForm = ({ onClose, time, setTime, setActive, task=[] }) => {
+export const SaveForm = ({ onClose, time, setTime, setActive, task = [] }) => {
   const [taskName, setTaskName] = useState(task[0]?.name ?? "");
-  const [taskDescription, settaskDescription] = useState(task[0]?.discription ?? "");
-
+  const [taskDescription, settaskDescription] = useState(
+    task[0]?.discription ?? ""
+  );
+  const [error, seError] = useState("");
   const dispatch = useTaskReducers();
 
   function handleSave() {
+    if (taskDescription.length <= 0 || taskName.length <= 0) {
+      seError("all input fields should be filled");
+      return;
+    }
+
     let action = {
       type: "add",
       name: taskName,
@@ -18,24 +25,30 @@ export const SaveForm = ({ onClose, time, setTime, setActive, task=[] }) => {
       time: time,
     };
     let editAction = {
-      id:task[0]?.id ,
+      id: task[0]?.id,
       type: "edit",
       name: taskName,
       discription: taskDescription,
-      time:  task[0]?.time ,
+      time: task[0]?.time,
     };
     onClose();
     setTime(() => 0);
 
-    if (task.length > 0 && taskName.length > 0 && taskDescription.length > 0) {
+    if (task?.length > 0) {
       dispatch(editAction);
-      return;
-    }
-
-    if (taskName.length > 0 && taskDescription.length > 0) {
+    } else {
       dispatch(action);
     }
   }
+
+  useEffect(() => {
+    if (taskName.length > 0 && taskDescription.length > 0) {
+      seError("");
+    }
+    // else{
+    //   seError("all input fields should be filled");
+    // }
+  }, [taskName, taskDescription]);
 
   useEffect(() => {
     setActive(false);
@@ -48,7 +61,7 @@ export const SaveForm = ({ onClose, time, setTime, setActive, task=[] }) => {
         type="text"
         placeholder="enter Title of Task"
         value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
+        onChange={(e) => {console.log(e) ;setTaskName(e.target.value)}}
       />
 
       <textarea
@@ -70,6 +83,7 @@ export const SaveForm = ({ onClose, time, setTime, setActive, task=[] }) => {
         />
         <Button onClick={handleSave} text="save" />
       </div>
+      {error.length > 0 && error }
     </form>
   );
 };

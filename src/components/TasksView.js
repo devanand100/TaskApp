@@ -8,7 +8,7 @@ export const TaskView = ({ setEditTask }) => {
   if (!tasks) {
     return (
       <div className="mt-10">
-        <h1 className="border-b-2 text-xl">Saved Task</h1>
+        <h1 className="border-b-2 text-xl">{`Saved Task (${tasks.length})`}</h1>
         No Tasks
       </div>
     );
@@ -16,7 +16,7 @@ export const TaskView = ({ setEditTask }) => {
 
   return (
     <div className="mt-10 leading-relaxed">
-      <h1 className="border-b-2 text-xl ">Saved Task</h1>
+      <h1 className="border-b-2 text-xl ">{`Saved Task (${tasks.length})`}</h1>
       <div className="task-view overflow-y-scroll">
       {tasks.map((task) => (
         <div key={task.id} className="border-2 my-2 rounded-md p-2">

@@ -74,7 +74,7 @@ export default function HomePage() {
           </Modal>
         )}
         <div className="relative w-full">
-          <div className="text-xl text-center">Task App</div>
+          <div className="text-xl text-center">TaskFlow</div>
           <hr />
             <div className="relative">
 

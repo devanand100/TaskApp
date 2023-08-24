@@ -73,24 +73,28 @@ export default function HomePage() {
             />
           </Modal>
         )}
-        <div className="relative w-full">
+        <div className="w-full">
           <div className="text-xl text-center">Task App</div>
           <hr />
-          <Clock time={time} />
-          <div className="absolute btn-group">
-            <Button onClick={startTimer} disabled={active} text="Start" />
-            <Button onClick={stopTimer} disabled={!active} text="Pause" />
-            <Button
-              disabled={time < 1}
-              text="Save"
-              onClick={() => {
-                setSave(true);
-                stopTimer();
-              }}
-            />
+          <div className="relative">
+
+            <Clock time={time} />
+            <div className="absolute btn-group">
+              <Button onClick={startTimer} disabled={active} text="Start" />
+              <Button onClick={stopTimer} disabled={!active} text="Pause" />
+              <Button
+                disabled={time < 1}
+                text="Save"
+                onClick={() => {
+                  setSave(true);
+                  stopTimer();
+                }}
+              />
+            </div>
           </div>
+
         </div>
-        <TaskView  setEditTask={setEditTask}/>
+        <TaskView setEditTask={setEditTask} />
       </TasksReducerContext.Provider>
     </TasksContext.Provider>
   );

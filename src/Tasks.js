@@ -76,7 +76,8 @@ export default function HomePage() {
         <div className="relative w-full">
           <div className="text-xl text-center">Task App</div>
           <hr />
-           <div className="relative">
+            <div className="relative">
+
             <Clock time={time} />
             <div className="absolute btn-group">
               <Button onClick={startTimer} disabled={active} text="Start" />
@@ -90,6 +91,7 @@ export default function HomePage() {
                 }}
               />
             </div>
+          </div>
           </div>
         </div>
         <TaskView  setEditTask={setEditTask}/>
